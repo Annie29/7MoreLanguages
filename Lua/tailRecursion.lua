@@ -5,6 +5,8 @@
 --  Return the sum of 1 to max, recursively, badly
 --  That is, using recursion, not tail recursion
 --  This code chokes somewhere between 10,000 and 100,000
+--  More precisely, the last one it can compute is 19,997, 
+--  at least on my computer.
 function sum_badly(max)
 	if max <= 1 then 
 		return max
@@ -43,3 +45,31 @@ end
 function sum_well(max)
    return sum_well_helper(max, 0)
 end
+
+--[[
+   A simple example from the blog entry
+   ]]
+   
+ -- The classic recursive solution
+ function fact_1(num)
+    if num <= 1 then 
+	   return 1
+	else
+	   return num * fact_1 (num - 1)
+	end
+ end
+ 
+ -- The two parameter recursive solution
+ function fact_2 (num, result)
+    if num <= 1 then 
+	   return result
+	else
+	   return fact_2 (num - 1, result * num)
+	end
+ end
+ 
+ --  The one parameter call to the tail recursive function
+ function factorial (num)
+    return fact_2(num, 1)
+ end
+ 
